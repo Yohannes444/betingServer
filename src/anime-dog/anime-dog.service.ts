@@ -16,12 +16,10 @@ export class AnimeDogService {
   async create(createAnimeDogDto: CreateAnimeDogDto) {
     try{
       const newAnimedogTiket= await this.animeDogModel.create(createAnimeDogDto)
-
       return newAnimedogTiket;
     }catch (error){
       console.log("error activating customer")
     }
-    
   }
 
   async findAll() {

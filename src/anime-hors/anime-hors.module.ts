@@ -5,7 +5,9 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AnimeHor , AnimeHorSchema } from './entities/anime-hor.entity'
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: AnimeHor.name, schema: AnimeHorSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: AnimeHor.name, schema: AnimeHorSchema }])
+  ],
   controllers: [AnimeHorsController],
   providers: [AnimeHorsService],
 })

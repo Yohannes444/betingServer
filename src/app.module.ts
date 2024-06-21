@@ -15,6 +15,7 @@ import { config } from './config'
       load:[config],
       isGlobal: true
     }),
+
     MongooseModule.forRootAsync({
       imports:[ConfigModule],
       inject:[ConfigService],
@@ -24,11 +25,14 @@ import { config } from './config'
         socketTimeoutMS:45000
       })
     }),
+
     GrayhornModule, 
     AnimeDogModule, 
     AnimeHorsModule, 
-    KenoModule],
+    KenoModule
+  ],
   controllers: [AppController],
   providers: [AppService],
+  
 })
 export class AppModule {}

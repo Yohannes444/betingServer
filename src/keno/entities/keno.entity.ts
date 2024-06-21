@@ -5,24 +5,24 @@ import { Type } from 'class-transformer';
 export type KenoDocument = Keno & Document;
 
 class Bet {
-  @Prop({ type: [[Number]] })
-  selectedButtons: number[][];
+  @Prop({ type: [Number], required: true })
+  selectedButtonsS: number[];
 
-  @Prop({ type: Number })
+  @Prop({ type: Number, required: true })
   betAmount: number;
 
-  @Prop({ type: Boolean })
-  isExactaActive: boolean;
+  @Prop({ type: Number, required: true })
+  odd: number;
 
-  @Prop({ type: Boolean })
-  isQuinellaActive: boolean;
+  @Prop({ type: Number, required: true })
+  possibleWin: number;
 }
 
 const BetSchema = SchemaFactory.createForClass(Bet);
 
 @Schema({ timestamps: true })
 export class Keno {
-  @Prop({ type: [BetSchema] })
+  @Prop({ type: [BetSchema], required: true })
   @Type(() => Bet)
   bets: Bet[];
 

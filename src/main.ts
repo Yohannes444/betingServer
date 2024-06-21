@@ -7,7 +7,12 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const configService= app.get(ConfigService)
   const port= configService.get('port')
-  await app.listen(3000,()=>{
+  app.enableCors({
+    origin: 'http://localhost:5173', // Frontend origin
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
+  await app.listen(5454,()=>{
     console.log("server is runing on port 5454")
   });
 }

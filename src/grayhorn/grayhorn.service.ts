@@ -8,12 +8,17 @@ import { GrayhornDocument } from './entities/grayhorn.entity'
 @Injectable()
 export class GrayhornService {
   constructor(
-    @InjectModel('AnimeDog')
-    private readonly animeDogModel:Model<GrayhornDocument>
+    @InjectModel('Grayhorn')
+    private readonly grayhornModel:Model<GrayhornDocument>
 
   ){}
-  create(createGrayhornDto: CreateGrayhornDto) {
-    return 'This action adds a new grayhorn';
+  async create(createGrayhornDto: CreateGrayhornDto) {
+    try{
+      const newGrayhornTiket= await this.grayhornModel.create(createGrayhornDto)
+      return newGrayhornTiket;
+    }catch (error){
+      console.log("error activating customer")
+    }
   }
 
   findAll() {

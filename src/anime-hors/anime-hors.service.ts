@@ -1,11 +1,24 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAnimeHorDto } from './dto/create-anime-hor.dto';
 import { UpdateAnimeHorDto } from './dto/update-anime-hor.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { AnimeHorDocument } from './entities/anime-hor.entity'
 
 @Injectable()
 export class AnimeHorsService {
-  create(createAnimeHorDto: CreateAnimeHorDto) {
-    return 'This action adds a new animeHor';
+  constructor(
+    @InjectModel('AnimeHor')
+    private readonly AnimeHorModel:Model<AnimeHorDocument>
+
+  ){}
+  async create(createAnimeHorDto: CreateAnimeHorDto) {
+    try{
+      const newAnimeHorTiket= await this.AnimeHorModel.create(createAnimeHorDto)
+      return newAnimeHorTiket;
+    }catch (error){
+      console.log("error activating customer")
+    }
   }
 
   findAll() {

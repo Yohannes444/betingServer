@@ -1,11 +1,26 @@
 import { Injectable } from '@nestjs/common';
 import { CreateKenoDto } from './dto/create-keno.dto';
 import { UpdateKenoDto } from './dto/update-keno.dto';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { KenoDocument } from './entities/keno.entity'
 
 @Injectable()
 export class KenoService {
-  create(createKenoDto: CreateKenoDto) {
-    return 'This action adds a new keno';
+
+ constructor(
+    @InjectModel('Keno')
+    private readonly kenoModel:Model<KenoDocument>
+
+  ){}
+
+  async create(createKenoDto: CreateKenoDto) {
+    try{
+      const newKenoTiket= await this.kenoModel.create(createKenoDto)
+      return newKenoTiket;
+    }catch (error){
+      console.log("error activating customer")
+    }
   }
 
   findAll() {
