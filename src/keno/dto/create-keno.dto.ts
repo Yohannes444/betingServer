@@ -1,4 +1,4 @@
-import { IsArray, IsNumber, ArrayMinSize, IsPositive } from 'class-validator';
+import { IsArray, IsNumber, ArrayMinSize, IsPositive, IsString } from 'class-validator';
 
 export class CreateKenoDto {
   @IsArray()
@@ -13,6 +13,14 @@ export class CreateKenoDto {
   @IsNumber()
   @IsPositive()
   odd: number;
+
+  @IsString()
+  @IsPositive()
+  gameId: string;
+
+  @IsString()
+  @IsPositive()
+  tiketId: string;
 
   @IsNumber()
   @IsPositive()
