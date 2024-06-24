@@ -9,7 +9,7 @@ import { MongooseModule } from '@nestjs/mongoose'
 import { ConfigModule, ConfigService } from  '@nestjs/config'
 import { config } from './config'
 import { AuthModule } from './auth/auth.module'
-
+import { ResaltModule } from './resalt/resalt.module'
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -31,7 +31,8 @@ import { AuthModule } from './auth/auth.module'
     AnimeDogModule, 
     AnimeHorsModule, 
     KenoModule,
-    AuthModule
+    AuthModule,
+    ResaltModule
   ],
   controllers: [AppController],
   providers: [AppService],
