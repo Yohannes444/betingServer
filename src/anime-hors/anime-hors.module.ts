@@ -10,5 +10,6 @@ import { AnimeHor , AnimeHorSchema } from './entities/anime-hor.entity'
   ],
   controllers: [AnimeHorsController],
   providers: [AnimeHorsService],
+  exports: [AnimeHorsService, MongooseModule]
 })
 export class AnimeHorsModule {}

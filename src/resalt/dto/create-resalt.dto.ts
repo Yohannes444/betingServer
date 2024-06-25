@@ -1,4 +1,4 @@
-import { IsNumber, ValidateNested } from 'class-validator';
+import { IsNumber, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
 class DogPlaceDto {
@@ -12,6 +12,9 @@ class DogPlaceDto {
 export class CreateResaltDto {
   @IsNumber()
   gameId: number;
+
+  @IsString()
+  type:string
 
   @ValidateNested()
   @Type(() => DogPlaceDto)

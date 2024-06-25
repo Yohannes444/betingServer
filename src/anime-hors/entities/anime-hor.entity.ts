@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose,{ Document } from 'mongoose';
 import { Type } from 'class-transformer';
 import { ArrayMinSize } from 'class-validator';
 import { User } from 'src/auth/schemas/user.schema';
@@ -14,6 +14,10 @@ export class Bet {
 
   @Prop({ type: Number, required: true })
   betAmount: number;
+  @Prop({ type: Boolean, default: false })
+  win: boolean;
+  @Prop({ type: Number })
+  prize: number;
 }
 
 export const BetSchema = SchemaFactory.createForClass(Bet);
@@ -28,8 +32,6 @@ export class AnimeHor {
   @Prop({ type: Number, required: true })
   gameId: number;
 
-  @Prop({ type: Boolean, default: false })
-  win: boolean;
 
   @Prop({ type: Boolean, default: false })
   canceled: boolean;
@@ -38,10 +40,10 @@ export class AnimeHor {
   payd: boolean;
 
   @Prop({ type: Number })
-  prize: number;
+  totslPrize: number;
 
-  @Prop({type: User, required:false})
-  tiketerId:User
+  @Prop({type: mongoose.Schema.Types.ObjectId, required:false})
+  tiketerId:mongoose.Schema.Types.ObjectId
 
   @Prop({type: String, required:true})
   tiketId:String
