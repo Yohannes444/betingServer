@@ -26,14 +26,14 @@ export class AnimeHorsService {
       // Set default values or computed values for attributes not in the DTO
       const newAnimeHorData: Partial<AnimeHor> = {
         ...createAnimeHorDto,
-        canceled: false, // default value
-        payd: false, // default value
-        totslPrize: 0, // initial value
-        tiketerId: null, // can be set to a specific User object if available
+        canceled: false, 
+        payd: false, 
+        totslPrize: 0,
+        tiketerId: null, 
         bets: createAnimeHorDto.bets.map(bet => ({
           ...bet,
-          win: false, // default value
-          prize: 0 // initial value
+          win: false, 
+          prize: 0 
         })),
       };
 
@@ -49,8 +49,9 @@ export class AnimeHorsService {
     return `This action returns all animeHors`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} animeHor`;
+  async findOne(id: string) {
+    const tiket = await this.AnimeHorModel.findById(id)
+    return tiket;
   }
 
   update(id: number, updateAnimeHorDto: UpdateAnimeHorDto) {

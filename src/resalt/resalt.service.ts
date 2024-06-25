@@ -42,14 +42,33 @@ export class ResaltService {
           let totalPrize = 0;
 
           ticket.bets.forEach(bet => {
-            if (bet.selectedButtons[1] === First.DogPlaceNum) {
-              bet.win = true;
-              bet.prize = First.DogPlaceOdd * bet.betAmount;
-              totalPrize += bet.prize;
-            } else {
-              bet.win = false;
-              bet.prize = 0;
+            if(bet.selectedButtons[0] === 1){
+              if (bet.selectedButtons[1] === First.DogPlaceNum) {
+                bet.win = true;
+                bet.prize = First.DogPlaceOdd * bet.betAmount;
+                totalPrize += bet.prize;
+            console.log("First winder dog: ",ticket.bets)
+                
+              }
+               else {
+                bet.win = false;
+                bet.prize = 0;
+              }
+            }else if (bet.selectedButtons[0] === 2){
+              if(bet.selectedButtons[1] === Second.DogPlaceNum){
+                bet.win = true;
+                bet.prize = Second.DogPlaceOdd * bet.betAmount;
+                totalPrize += bet.prize;
+            console.log("Second winder dog: ",ticket.bets)
+              }
+               else {
+                bet.win = false;
+                bet.prize = 0;
+              }
+            }else{
+              console.log("the tiket is not valide")
             }
+            
           });
 
           ticket.totslPrize = totalPrize;
@@ -64,14 +83,31 @@ export class ResaltService {
           let totalPrize = 0;
 
           ticket.bets.forEach(bet => {
-            if (bet.selectedButtons[1] === Second.DogPlaceNum) {
-              bet.win = true;
-              bet.prize = Second.DogPlaceOdd * bet.betAmount;
-              totalPrize += bet.prize;
-            } else {
-              bet.win = false;
-              bet.prize = 0;
+            if(bet.selectedButtons[0] === 1){
+              if (bet.selectedButtons[1] === First.DogPlaceNum) {
+                bet.win = true;
+                bet.prize = First.DogPlaceOdd * bet.betAmount;
+                totalPrize += bet.prize;
+                
+              }
+               else {
+                bet.win = false;
+                bet.prize = 0;
+              }
+            }else if (bet.selectedButtons[0] === 2){
+              if(bet.selectedButtons[1] === Second.DogPlaceNum){
+                bet.win = true;
+                bet.prize = Second.DogPlaceOdd * bet.betAmount;
+                totalPrize += bet.prize;
+              }
+               else {
+                bet.win = false;
+                bet.prize = 0;
+              }
+            }else{
+              console.log("the tiket is not valide")
             }
+            
           });
 
           ticket.totslPrize = totalPrize;
@@ -86,18 +122,7 @@ export class ResaltService {
     }
   }
 
-  async createHorsResult(createResaltDto: CreateResaltDto) {
-    try{
-      const type: Type = Type.Hors; // Add logic here to determine the type if needed
-      const createdDogRace = new this.dogRaceModel({
-        ...createResaltDto,
-        type,
-      });
-      return createdDogRace.save();
-    }catch (error){
-      console.log("error activating customer")
-    }
-  }
+  
   findAll() {
     return `This action returns all resalt`;
   }

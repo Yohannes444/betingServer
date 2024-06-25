@@ -23,17 +23,16 @@ export class AnimeDogService {
 
       const newAnimeHorData: Partial<AnimeDog> = {
         ...createAnimeDogDto,
-        canceled: false, // default value
-        payd: false, // default value
-        totslPrize: 0, // initial value
-        tiketerId: null, // can be set to a specific User object if available
+        canceled: false, 
+        payd: false, 
+        totslPrize: 0, 
+        tiketerId: null, 
         bets: createAnimeDogDto.bets.map(bet => ({
           ...bet,
-          win: false, // default value
-          prize: 0 // initial value
+          win: false, 
+          prize: 0 
         })),
       };
-      console.log('newAnimeHorData: ',newAnimeHorData)
       const newAnimedogTiket= await this.animeDogModel.create(newAnimeHorData)
       return newAnimedogTiket;
     }catch (error){
@@ -45,8 +44,10 @@ export class AnimeDogService {
     return `This action returns all animeDog`;
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} animeDog`;
+  async findOne(id: string) {
+    const tiket= await this.animeDogModel.findById(id)
+
+    return tiket;
   }
 
   async update(id: number, updateAnimeDogDto: UpdateAnimeDogDto) {

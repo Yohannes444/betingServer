@@ -7,15 +7,12 @@ import { UpdateResaltDto } from './dto/update-resalt.dto';
 export class ResaltController {
   constructor(private readonly resaltService: ResaltService) {}
 
-  @Post('DogResult')
+  @Post()
   create(@Body() createResaltDto: CreateResaltDto) {
     return this.resaltService.create(createResaltDto);
   }
 
-  @Post('HourseResult')
-  createHorsResult(@Body() createResaltDto: CreateResaltDto) {
-    return this.resaltService.createHorsResult(createResaltDto);
-  }
+ 
 
   @Get()
   findAll() {
