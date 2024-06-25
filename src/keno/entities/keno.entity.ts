@@ -1,11 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Type } from 'class-transformer';
-
+import { ArrayMinSize } from 'class-validator';
 export type KenoDocument = Keno & Document;
 
-class Bet {
+@Schema({ _id: false })  // Using _id: false to avoid nested _id for subdocuments
+export class Bet {
   @Prop({ type: [Number], required: true })
+  @ArrayMinSize(1) 
   selectedButtonsS: number[];
 
   @Prop({ type: Number, required: true })
@@ -24,6 +26,7 @@ const BetSchema = SchemaFactory.createForClass(Bet);
 export class Keno {
   @Prop({ type: [BetSchema], required: true })
   @Type(() => Bet)
+  @ArrayMinSize(1) 
   bets: Bet[];
 
   @Prop({ type: Number, required: true })

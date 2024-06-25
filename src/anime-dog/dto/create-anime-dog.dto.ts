@@ -1,18 +1,21 @@
-import { IsArray, IsBoolean, IsNumber, ArrayMinSize, ValidateNested } from 'class-validator';
+import { IsArray, IsPositive, IsNumber, ArrayMinSize, IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateAnimeDogDto {
   @IsArray()
   @ArrayMinSize(1)
   @Type(() => Number)
-  selectedButtons: number[][];
+  selectedButtons: number[];
 
   @IsNumber()
   betAmount: number;
 
-  @IsBoolean()
-  isExactaActive: boolean;
+  @IsString()
+  @IsPositive()
+  gameId: string;
 
-  @IsBoolean()
-  isQuinellaActive: boolean;
+  @IsString()
+  @IsPositive()
+  tiketId: string;
+ 
 }

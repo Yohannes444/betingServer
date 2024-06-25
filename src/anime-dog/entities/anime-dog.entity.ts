@@ -2,23 +2,18 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import { Type } from 'class-transformer';
 import { ArrayMinSize } from 'class-validator';
-
+import { User } from 'src/auth/schemas/user.schema';
 export type AnimeDogDocument = AnimeDog & Document;
 
 @Schema({ _id: false })  // Using _id: false to avoid nested _id for subdocuments
 export class Bet {
-  @Prop({ type: [[Number]], required: true })
+  @Prop({ type: [Number], required: true })
   @ArrayMinSize(1)  // Validate that the array has at least one element
-  selectedButtons: number[][];
+  selectedButtons: number[];
 
   @Prop({ type: Number, required: true })
   betAmount: number;
 
-  @Prop({ type: Boolean, required: true })
-  isExactaActive: boolean;
-
-  @Prop({ type: Boolean, required: true })
-  isQuinellaActive: boolean;
 }
 
 export const BetSchema = SchemaFactory.createForClass(Bet);
@@ -44,6 +39,12 @@ export class AnimeDog {
 
   @Prop({ type: Number })
   prize: number;
+
+  @Prop({type: User, required:false})
+  tiketerId:User
+
+  @Prop({type: String, required:true})
+  tiketId:String
 }
 
 export const AnimeDogSchema = SchemaFactory.createForClass(AnimeDog);
