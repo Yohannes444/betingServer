@@ -1,29 +1,47 @@
-import { IsNumber, IsString, ValidateNested } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsObject, IsString, ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
 
-class DogPlaceDto {
+class ResaltDto {
   @IsNumber()
-  DogPlaceNum: number;
+  @IsNotEmpty()
+  first: number;
 
   @IsNumber()
-  DogPlaceOdd: number;
+  @IsNotEmpty()
+  second: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  third: number;
 }
 
 export class CreateGrayhornResulatDto {
   @IsNumber()
+  @IsNotEmpty()
   gameId: number;
 
   @IsString()
-  type:string
+  @IsNotEmpty()
+  tiketerId: string;
 
   @ValidateNested()
-  @Type(() => DogPlaceDto)
-  First: DogPlaceDto;
+  @Type(() => ResaltDto)
+  @IsNotEmpty()
+  resalt: ResaltDto;
 
-  @ValidateNested()
-  @Type(() => DogPlaceDto)
-  Second: DogPlaceDto;
+  @IsNumber()
+  @IsNotEmpty()
+  windOdd: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  qunelaOdd: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  exactOdd: number;
+
+  @IsNumber()
+  @IsNotEmpty()
+  tryfectaOdd: number;
 }
-
-
-
