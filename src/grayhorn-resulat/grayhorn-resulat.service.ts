@@ -74,7 +74,7 @@ export class GrayhornResulatService {
       }
     }
 
-    
+
     return winners;
   }
 
@@ -97,40 +97,26 @@ export class GrayhornResulatService {
       }
  
     return boolean
-    // return selectedButtons.some(buttons => 
-    //   buttons.length === 2 &&
-    //   ((buttons[0][1] === resalt.first && buttons[1][1] === resalt.second) ||
-    //    (buttons[0][1] === resalt.second && buttons[1][1] === resalt.first))
-    // );
   }
 
   private isExactaWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
     var boolean= false
-    if(selectedButtons.length === 2 && selectedButtons[0][1] === resalt.first && 
-      selectedButtons[1][1] === resalt.second){
+    if(selectedButtons.length === 2 && selectedButtons[0][1] === resalt.first && selectedButtons[1][1] === resalt.second){
         boolean= true
       }
  
     return boolean
-    // return selectedButtons.some(buttons => 
-    //   buttons.length === 2 &&
-    //   buttons[0][1] === resalt.first && 
-    //   buttons[1][1] === resalt.second
-    // );
+
   }
 
   private isWinWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
     var boolean= false
-    if(selectedButtons.length === 1 && selectedButtons[0][1] === resalt.first && 
-      selectedButtons[1][1] === resalt.second){
+    if(selectedButtons.length === 1 && selectedButtons[0][1] === resalt.first ){
         boolean= true
       }
  
     return boolean
-    // return selectedButtons.some(buttons => 
-    //   buttons.length === 1 &&
-    //   buttons[0][1] === resalt.first
-    // );
+   
   }
 
   findAll() {
