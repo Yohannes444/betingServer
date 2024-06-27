@@ -17,6 +17,8 @@ export class KenoService {
   async create(createKenoDto: CreateKenoDto) {
     try{
       const newKenoTiket= await this.kenoModel.create(createKenoDto)
+      console.log("createKenoDto:=>",createKenoDto,"\nnewKenoTiket: ",newKenoTiket)
+      
       return newKenoTiket;
     }catch (error){
       console.log("error activating customer")

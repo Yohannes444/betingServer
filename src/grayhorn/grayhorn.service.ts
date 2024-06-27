@@ -15,6 +15,7 @@ export class GrayhornService {
   async create(createGrayhornDto: CreateGrayhornDto) {
     try{
       const newGrayhornTiket= await this.grayhornModel.create(createGrayhornDto)
+      console.log("createGrayhornDto: ",createGrayhornDto , "\n newGrayhornTiket: ",newGrayhornTiket)
       return newGrayhornTiket;
     }catch (error){
       console.log("error activating customer")

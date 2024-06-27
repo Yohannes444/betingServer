@@ -10,5 +10,7 @@ import { AnimeDog, AnimeDogSchema } from './entities/anime-dog.entity';
   ],
   controllers: [AnimeDogController],
   providers: [AnimeDogService],
+  exports: [AnimeDogService, MongooseModule]
+
 })
 export class AnimeDogModule {}

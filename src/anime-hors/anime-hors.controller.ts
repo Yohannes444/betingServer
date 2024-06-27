@@ -19,7 +19,7 @@ export class AnimeHorsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.animeHorsService.findOne(+id);
+    return this.animeHorsService.findOne(id);
   }
 
   @Patch(':id')

@@ -8,7 +8,9 @@ import { GrayhornModule } from './grayhorn/grayhorn.module';
 import { MongooseModule } from '@nestjs/mongoose'
 import { ConfigModule, ConfigService } from  '@nestjs/config'
 import { config } from './config'
-
+import { AuthModule } from './auth/auth.module'
+import { ResaltModule } from './resalt/resalt.module'
+import { GrayhornResulatModule } from './grayhorn-resulat/grayhorn-resulat.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -29,7 +31,10 @@ import { config } from './config'
     GrayhornModule, 
     AnimeDogModule, 
     AnimeHorsModule, 
-    KenoModule
+    KenoModule,
+    AuthModule,
+    ResaltModule,
+    GrayhornResulatModule
   ],
   controllers: [AppController],
   providers: [AppService],

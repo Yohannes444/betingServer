@@ -19,6 +19,11 @@ export class Bet {
 
   @Prop({ type: Boolean, required: true })
   isQuinellaActive: boolean;
+
+  @Prop({ type: Boolean, default: false })
+  win: boolean;
+  @Prop({ type: Number })
+  prize: number;
 }
 
 export const BetSchema = SchemaFactory.createForClass(Bet);
@@ -33,8 +38,8 @@ export class Grayhorn {
   @Prop({ type: Number, required: true })
   gameId: number;
 
-  @Prop({ type: Boolean, default: false })
-  win: boolean;
+  @Prop({ type: Number })
+  totslPrize: number;
 
   @Prop({ type: Boolean, default: false })
   canceled: boolean;

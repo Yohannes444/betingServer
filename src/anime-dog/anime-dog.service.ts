@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { CreateAnimeDogDto } from './dto/create-anime-dog.dto';
 import { UpdateAnimeDogDto } from './dto/update-anime-dog.dto';
-import { AnimeDogDocument } from './entities/anime-dog.entity'
+import { AnimeDogDocument,AnimeDog } from './entities/anime-dog.entity'
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-
+import { plainToInstance } from 'class-transformer';
+import { validateOrReject } from 'class-validator';
 @Injectable()
 export class AnimeDogService {
   constructor(
@@ -15,7 +16,24 @@ export class AnimeDogService {
 
   async create(createAnimeDogDto: CreateAnimeDogDto) {
     try{
-      const newAnimedogTiket= await this.animeDogModel.create(createAnimeDogDto)
+      const createAnimeHorObj = plainToInstance(CreateAnimeDogDto, createAnimeDogDto);
+
+      // Validate the DTO instance
+      await validateOrReject(createAnimeHorObj);
+
+      const newAnimeHorData: Partial<AnimeDog> = {
+        ...createAnimeDogDto,
+        canceled: false, 
+        payd: false, 
+        totslPrize: 0, 
+        tiketerId: null, 
+        bets: createAnimeDogDto.bets.map(bet => ({
+          ...bet,
+          win: false, 
+          prize: 0 
+        })),
+      };
+      const newAnimedogTiket= await this.animeDogModel.create(newAnimeHorData)
       return newAnimedogTiket;
     }catch (error){
       console.log("error activating customer")
@@ -26,8 +44,10 @@ export class AnimeDogService {
     return `This action returns all animeDog`;
   }
 
-  async findOne(id: number) {
-    return `This action returns a #${id} animeDog`;
+  async findOne(id: string) {
+    const tiket= await this.animeDogModel.findById(id)
+
+    return tiket;
   }
 
   async update(id: number, updateAnimeDogDto: UpdateAnimeDogDto) {
