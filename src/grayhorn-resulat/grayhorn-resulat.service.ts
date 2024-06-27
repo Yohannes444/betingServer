@@ -74,43 +74,63 @@ export class GrayhornResulatService {
       }
     }
 
+    
     return winners;
   }
 
   private isTryfectaWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
-    const result= selectedButtons.some(buttons => 
-      buttons.length === 3 &&
-      buttons[0][1] === resalt.first && 
-      buttons[1] [1]=== resalt.second && 
-      buttons[2] [1] === resalt.third
-    );
-    console.log("selectedButtons: ",selectedButtons)
-
-    console.log("result: ",result)
-    return result
+    var boolean= false
+    if(selectedButtons.length === 3 && selectedButtons[0][1]=== resalt.first && 
+      selectedButtons[1] [1]=== resalt.second && 
+      selectedButtons[2] [1] === resalt.third){
+        boolean= true
+      }
+ 
+    return boolean
   }
 
   private isQuinellaWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
-    return selectedButtons.some(buttons => 
-      buttons.length === 2 &&
-      ((buttons[0][1] === resalt.first && buttons[1][1] === resalt.second) ||
-       (buttons[0][1] === resalt.second && buttons[1][1] === resalt.first))
-    );
+    var boolean= false
+    if(selectedButtons.length === 2 && ((selectedButtons[0][1] === resalt.first && selectedButtons[1][1] === resalt.second) ||
+    (selectedButtons[0][1] === resalt.second && selectedButtons[1][1] === resalt.first))){
+        boolean= true
+      }
+ 
+    return boolean
+    // return selectedButtons.some(buttons => 
+    //   buttons.length === 2 &&
+    //   ((buttons[0][1] === resalt.first && buttons[1][1] === resalt.second) ||
+    //    (buttons[0][1] === resalt.second && buttons[1][1] === resalt.first))
+    // );
   }
 
   private isExactaWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
-    return selectedButtons.some(buttons => 
-      buttons.length === 2 &&
-      buttons[0][1] === resalt.first && 
-      buttons[1][1] === resalt.second
-    );
+    var boolean= false
+    if(selectedButtons.length === 2 && selectedButtons[0][1] === resalt.first && 
+      selectedButtons[1][1] === resalt.second){
+        boolean= true
+      }
+ 
+    return boolean
+    // return selectedButtons.some(buttons => 
+    //   buttons.length === 2 &&
+    //   buttons[0][1] === resalt.first && 
+    //   buttons[1][1] === resalt.second
+    // );
   }
 
   private isWinWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
-    return selectedButtons.some(buttons => 
-      buttons.length === 1 &&
-      buttons[0][1] === resalt.first
-    );
+    var boolean= false
+    if(selectedButtons.length === 1 && selectedButtons[0][1] === resalt.first && 
+      selectedButtons[1][1] === resalt.second){
+        boolean= true
+      }
+ 
+    return boolean
+    // return selectedButtons.some(buttons => 
+    //   buttons.length === 1 &&
+    //   buttons[0][1] === resalt.first
+    // );
   }
 
   findAll() {
