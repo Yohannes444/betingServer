@@ -22,7 +22,7 @@ export class Bet {
 
   @Prop({ type: Boolean, default: false })
   win: boolean;
-  @Prop({ type: Number })
+  @Prop({ type: Number, default:0 })
   prize: number;
 }
 
