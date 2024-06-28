@@ -23,6 +23,7 @@ export class GrayhornResulatService {
 
     // Find all tickets for the game
     const tickets = await this.grayhornTiketModel.find({ gameId: createGrayhornResulatDto.gameId });
+    console.log("tickets: ",tickets)
 
     // Determine the winners and update the tickets
     const { resalt, windOdd, qunelaOdd, exactOdd, tryfectaOdd } = createGrayhornResulatDto;
@@ -59,13 +60,17 @@ export class GrayhornResulatService {
         if (bet.win) {
           bet.prize = betPrize;
           totalPrize += betPrize;
+          console.log("bet: ",bet)
         }
+        
       }
 
       if (isWinner) {
         ticket.totslPrize = totalPrize;
         await ticket.save();
         winners.push(ticket);
+        console.log("winners: ",winners)
+
       }
     }
 
@@ -73,34 +78,38 @@ export class GrayhornResulatService {
   }
 
   private isTryfectaWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
-    return selectedButtons.some(buttons => 
+    const result= selectedButtons.some(buttons => 
       buttons.length === 3 &&
       buttons[0][1] === resalt.first && 
       buttons[1] [1]=== resalt.second && 
       buttons[2] [1] === resalt.third
     );
+    console.log("selectedButtons: ",selectedButtons)
+
+    console.log("result: ",result)
+    return result
   }
 
   private isQuinellaWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
     return selectedButtons.some(buttons => 
       buttons.length === 2 &&
-      ((buttons[0] === resalt.first && buttons[1] === resalt.second) ||
-       (buttons[0] === resalt.second && buttons[1] === resalt.first))
+      ((buttons[0][1] === resalt.first && buttons[1][1] === resalt.second) ||
+       (buttons[0][1] === resalt.second && buttons[1][1] === resalt.first))
     );
   }
 
   private isExactaWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
     return selectedButtons.some(buttons => 
       buttons.length === 2 &&
-      buttons[0] === resalt.first && 
-      buttons[1] === resalt.second
+      buttons[0][1] === resalt.first && 
+      buttons[1][1] === resalt.second
     );
   }
 
   private isWinWinner(selectedButtons: number[][], resalt: { first: number, second: number, third: number }): boolean {
     return selectedButtons.some(buttons => 
       buttons.length === 1 &&
-      buttons[0] === resalt.first
+      buttons[0][1] === resalt.first
     );
   }
 
