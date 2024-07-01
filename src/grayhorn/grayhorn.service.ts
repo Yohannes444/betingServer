@@ -27,16 +27,53 @@ export class GrayhornService {
     return allTikets;
   }
 
-  async findOne(id: number) {
+  async findOne(id:string) {
     const oneTikets= await this.grayhornModel.findById(id)
     return oneTikets;
   }
 
-  update(id: number, updateGrayhornDto: UpdateGrayhornDto) {
+  update(id: string, updateGrayhornDto: UpdateGrayhornDto) {
     return `This action updates a #${id} grayhorn`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} grayhorn`;
+  }
+
+  async findByCriteria(
+    startDate: Date,
+    endDate: Date,
+    payd: boolean,
+    canceled: boolean,
+    gameId: number,
+    minTotalPrize: number,
+  ) {
+    const query: any = {};
+
+    if (startDate && endDate) {
+      query['createdAt'] = { $gte: startDate, $lte: endDate };
+    } else if (startDate) {
+      query['createdAt'] = { $gte: startDate };
+    } else if (endDate) {
+      query['createdAt'] = { $lte: endDate };
+    }
+
+    if (payd !== undefined) {
+      query['payd'] = payd;
+    }
+
+    if (canceled !== undefined) {
+      query['canceled'] = canceled;
+    }
+
+    if (gameId) {
+      query['gameId'] = gameId;
+    }
+
+    if (minTotalPrize > 0) {
+      query['totalPrize'] = { $gt: 0 };
+    }
+
+    return await this.grayhornModel.find(query).exec();
   }
 }

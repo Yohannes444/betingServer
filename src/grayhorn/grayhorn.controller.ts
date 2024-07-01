@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Query } from '@nestjs/common';
 import { GrayhornService } from './grayhorn.service';
 import { CreateGrayhornDto } from './dto/create-grayhorn.dto';
 import { UpdateGrayhornDto } from './dto/update-grayhorn.dto';
@@ -17,18 +17,33 @@ export class GrayhornController {
     return this.grayhornService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.grayhornService.findOne(+id);
-  }
+  
 
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateGrayhornDto: UpdateGrayhornDto) {
-    return this.grayhornService.update(+id, updateGrayhornDto);
+    return this.grayhornService.update(id, updateGrayhornDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.grayhornService.remove(+id);
+    return this.grayhornService.remove(id);
+  }
+
+  @Get('filter')
+  async findByCriteria(
+    @Query('startDate') startDate: Date,
+    @Query('endDate') endDate: Date,
+    @Query('payd') payd: boolean,
+    @Query('canceled') canceled: boolean,
+    @Query('gameId') gameId: number,
+    @Query('minTotalPrize') minTotalPrize: number,
+  ) {
+    
+    return this.grayhornService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.grayhornService.findOne(id);
   }
 }
