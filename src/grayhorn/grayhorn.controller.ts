@@ -31,12 +31,12 @@ export class GrayhornController {
 
   @Get('filter')
   async findByCriteria(
-    @Query('startDate') startDate: Date,
-    @Query('endDate') endDate: Date,
-    @Query('payd') payd: boolean,
-    @Query('canceled') canceled: boolean,
-    @Query('gameId') gameId: number,
-    @Query('minTotalPrize') minTotalPrize: number,
+    @Body('startDate') startDate: Date,
+    @Body('endDate') endDate: Date,
+    @Body('payd') payd: boolean,
+    @Body('canceled') canceled: boolean,
+    @Body('gameId') gameId: number,
+    @Body('minTotalPrize') minTotalPrize: number,
   ) {
     
     return this.grayhornService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
