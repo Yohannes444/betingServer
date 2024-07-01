@@ -41,7 +41,8 @@ export class AnimeDogService {
   }
 
   async findAll() {
-    return `This action returns all animeDog`;
+    const allTikets= await this.animeDogModel.find()
+    return allTikets;
   }
 
   async findOne(id: string) {

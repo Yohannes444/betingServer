@@ -11,6 +11,7 @@ import { config } from './config'
 import { AuthModule } from './auth/auth.module'
 import { ResaltModule } from './resalt/resalt.module'
 import { GrayhornResulatModule } from './grayhorn-resulat/grayhorn-resulat.module';
+import { KenoRsultModule } from './keno-rsult/keno-rsult.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -34,7 +35,8 @@ import { GrayhornResulatModule } from './grayhorn-resulat/grayhorn-resulat.modul
     KenoModule,
     AuthModule,
     ResaltModule,
-    GrayhornResulatModule
+    GrayhornResulatModule,
+    KenoRsultModule
   ],
   controllers: [AppController],
   providers: [AppService],

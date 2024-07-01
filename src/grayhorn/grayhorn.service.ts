@@ -22,12 +22,14 @@ export class GrayhornService {
     }
   }
 
-  findAll() {
-    return `This action returns all grayhorn`;
+  async findAll() {
+    const allTikets= await this.grayhornModel.find()
+    return allTikets;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} grayhorn`;
+  async findOne(id: number) {
+    const oneTikets= await this.grayhornModel.findById(id)
+    return oneTikets;
   }
 
   update(id: number, updateGrayhornDto: UpdateGrayhornDto) {

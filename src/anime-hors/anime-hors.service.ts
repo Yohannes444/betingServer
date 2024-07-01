@@ -45,8 +45,9 @@ export class AnimeHorsService {
     }
   }
 
-  findAll() {
-    return `This action returns all animeHors`;
+  async findAll() {
+    const allTikets= await this.AnimeHorModel.find()
+    return allTikets;
   }
 
   async findOne(id: string) {
