@@ -14,6 +14,7 @@ import { ResaltModule } from './resalt/resalt.module';
 import { GrayhornResulatModule } from './grayhorn-resulat/grayhorn-resulat.module';
 import { IpService } from './ip.service'; // Add this import
 
+import { KenoRsultModule } from './keno-rsult/keno-rsult.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -36,6 +37,7 @@ import { IpService } from './ip.service'; // Add this import
     AuthModule,
     ResaltModule,
     GrayhornResulatModule,
+    KenoRsultModule
   ],
   controllers: [AppController],
   providers: [AppService, IpService], // Add IpService to providers

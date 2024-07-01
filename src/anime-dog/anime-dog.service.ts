@@ -41,7 +41,8 @@ export class AnimeDogService {
   }
 
   async findAll() {
-    return `This action returns all animeDog`;
+    const allTikets= await this.animeDogModel.find()
+    return allTikets;
   }
 
   async findOne(id: string) {
@@ -56,5 +57,42 @@ export class AnimeDogService {
 
   async remove(id: number) {
     return `This action removes a #${id} animeDog`;
+  }
+
+  async findByCriteria(
+    startDate: Date,
+    endDate: Date,
+    payd: boolean,
+    canceled: boolean,
+    gameId: number,
+    minTotalPrize: number,
+  ) {
+    const query: any = {};
+
+    if (startDate && endDate) {
+      query['createdAt'] = { $gte: startDate, $lte: endDate };
+    } else if (startDate) {
+      query['createdAt'] = { $gte: startDate };
+    } else if (endDate) {
+      query['createdAt'] = { $lte: endDate };
+    }
+
+    if (payd !== undefined) {
+      query['payd'] = payd;
+    }
+
+    if (canceled !== undefined) {
+      query['canceled'] = canceled;
+    }
+
+    if (gameId) {
+      query['gameId'] = gameId;
+    }
+
+    if (minTotalPrize > 0) {
+      query['totalPrize'] = { $gt: 0 };
+    }
+
+    return await this.animeDogModel.find(query).exec();
   }
 }
