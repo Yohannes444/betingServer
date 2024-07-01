@@ -4,9 +4,12 @@ import { ConfigService } from '@nestjs/config'
 
 
 async function bootstrap() {
+
   const app = await NestFactory.create(AppModule);
-  const configService= app.get(ConfigService)
-  const port= configService.get('port')
+  const configService= app.get(ConfigService);
+  const port= configService.get('port');
+
+
   app.enableCors({
     origin: 'http://localhost:5173', // Frontend origin
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
@@ -16,4 +19,5 @@ async function bootstrap() {
     console.log("server is runing on port 5454")
   });
 }
+
 bootstrap();
