@@ -59,6 +59,8 @@ export class AnimeDogService {
     return `This action removes a #${id} animeDog`;
   }
 
+
+  
   async findByCriteria(
     startDate: Date,
     endDate: Date,
@@ -77,7 +79,7 @@ export class AnimeDogService {
       query['createdAt'] = { $lte: endDate };
     }
 
-    if (payd !== undefined) {
+    if (payd !== undefined && payd == true) {
       query['payd'] = payd;
     }
 
@@ -89,8 +91,8 @@ export class AnimeDogService {
       query['gameId'] = gameId;
     }
 
-    if (minTotalPrize > 0) {
-      query['totalPrize'] = { $gt: 0 };
+    if (minTotalPrize !== undefined && minTotalPrize > 0) {
+      query['totalPrize'] = { $gt: minTotalPrize };
     }
 
     return await this.animeDogModel.find(query).exec();

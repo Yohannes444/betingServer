@@ -16,6 +16,18 @@ export class AnimeHorsController {
   findAll() {
     return this.animeHorsService.findAll();
   }
+  @Get('filter')
+  async findByCriteria(
+    @Body('startDate') startDate: Date,
+    @Body('endDate') endDate: Date,
+    @Body('payd') payd: boolean,
+    @Body('canceled') canceled: boolean,
+    @Body('gameId') gameId: number,
+    @Body('minTotalPrize') minTotalPrize: number,
+  ) {
+    
+    return this.animeHorsService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
+  }
 
   @Get(':id')
   findOne(@Param('id') id: string) {

@@ -81,7 +81,7 @@ export class AnimeHorsService {
       query['createdAt'] = { $lte: endDate };
     }
 
-    if (payd !== undefined) {
+    if (payd !== undefined && payd == true) {
       query['payd'] = payd;
     }
 
@@ -93,8 +93,8 @@ export class AnimeHorsService {
       query['gameId'] = gameId;
     }
 
-    if (minTotalPrize > 0) {
-      query['totalPrize'] = { $gt: 0 };
+    if (minTotalPrize !== undefined && minTotalPrize > 0) {
+      query['totalPrize'] = { $gt: minTotalPrize };
     }
 
     return await this.AnimeHorModel.find(query).exec();
