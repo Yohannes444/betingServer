@@ -3,6 +3,7 @@ import { AppModule } from './app.module';
 import { ConfigService } from '@nestjs/config';
 
 async function bootstrap() {
+
   const app = await NestFactory.create(AppModule);
   const configService = app.get(ConfigService);
   const port = configService.get('port');
@@ -12,6 +13,7 @@ async function bootstrap() {
     "http://localhost:5174",
     "http://localhost:5175" // add more as needed
   ];
+
 
   app.enableCors({
     origin: (origin, callback) => {
@@ -29,5 +31,6 @@ async function bootstrap() {
     console.log("Server is running on port 5454");
   });
 }
+
 
 bootstrap();

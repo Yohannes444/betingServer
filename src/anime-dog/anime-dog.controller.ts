@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch,Query , Param, Delete } from '@nestjs/common';
 import { AnimeDogService } from './anime-dog.service';
 import { CreateAnimeDogDto } from './dto/create-anime-dog.dto';
 import { UpdateAnimeDogDto } from './dto/update-anime-dog.dto';
@@ -15,6 +15,19 @@ export class AnimeDogController {
   @Get()
   findAll() {
     return this.animeDogService.findAll();
+  }
+  @Get('filter')
+  async findByCriteria(
+    @Query('startDate') startDate: Date,
+    @Query('endDate') endDate: Date,
+    @Body('payd') payd: boolean,
+    @Body('canceled') canceled: boolean,
+    @Body('gameId') gameId: number,
+    @Body('minTotalPrize') minTotalPrize: number,
+  ) {
+    console.log("{param: ", payd)
+
+    return this.animeDogService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
   }
 
   @Get(':id')
