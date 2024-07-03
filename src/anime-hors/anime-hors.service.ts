@@ -55,8 +55,22 @@ export class AnimeHorsService {
     return tiket;
   }
 
-  update(id: number, updateAnimeHorDto: UpdateAnimeHorDto) {
-    return `This action updates a #${id} animeHor`;
+  async update( updateAnimeHorDto: UpdateAnimeHorDto) {
+    try{
+      const tiket= await this.AnimeHorModel.findOne({tiketId:updateAnimeHorDto.tiketId})
+      if (tiket.payd === true){
+        return " ticket is already paid"
+      }else if (tiket.totslPrize > 0){
+        tiket.payd = true
+        tiket.save()
+        return tiket
+  }
+
+  return `this tiket have no wining bet in hear`;
+  }catch (error){
+    console.log("error finding tiket")
+  }
+
   }
 
   remove(id: number) {

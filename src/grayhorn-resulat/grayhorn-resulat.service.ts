@@ -23,7 +23,6 @@ export class GrayhornResulatService {
 
     // Find all tickets for the game
     const tickets = await this.grayhornTiketModel.find({ gameId: createGrayhornResulatDto.gameId });
-    console.log("tickets: ",tickets)
 
     // Determine the winners and update the tickets
     const { resalt, windOdd, qunelaOdd, exactOdd, tryfectaOdd } = createGrayhornResulatDto;
@@ -60,13 +59,14 @@ export class GrayhornResulatService {
         if (bet.win) {
           bet.prize = betPrize;
           totalPrize += betPrize;
-          console.log("bet: ",bet)
         }
         
       }
 
       if (isWinner) {
         ticket.totslPrize = totalPrize;
+        console.log("ticket: ",ticket)
+
         await ticket.save();
         winners.push(ticket);
         console.log("winners: ",winners)

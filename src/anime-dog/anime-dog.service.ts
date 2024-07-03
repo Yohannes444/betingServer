@@ -51,8 +51,22 @@ export class AnimeDogService {
     return tiket;
   }
 
-  async update(id: number, updateAnimeDogDto: UpdateAnimeDogDto) {
-    return `This action updates a #${id} animeDog`;
+  async update(updateAnimeDogDto: UpdateAnimeDogDto) {
+    try{
+      const tiket= await this.animeDogModel.findOne({tiketId:updateAnimeDogDto.tiketId})
+      if (tiket.payd === true){
+        return " ticket is already paid"
+      }else if (tiket.totslPrize > 0){
+        tiket.payd = true
+        tiket.save()
+        return tiket
+  }
+
+  return `this tiket have no wining bet in hear`;
+  }catch (error){
+    console.log("error finding tiket")
+  }
+
   }
 
   async remove(id: number) {

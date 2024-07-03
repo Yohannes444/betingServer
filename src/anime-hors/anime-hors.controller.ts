@@ -34,9 +34,9 @@ export class AnimeHorsController {
     return this.animeHorsService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAnimeHorDto: UpdateAnimeHorDto) {
-    return this.animeHorsService.update(+id, updateAnimeHorDto);
+  @Patch('pay')
+  update( @Body() updateAnimeHorDto: UpdateAnimeHorDto) {
+    return this.animeHorsService.update(updateAnimeHorDto);
   }
 
   @Delete(':id')

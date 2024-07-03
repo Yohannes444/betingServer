@@ -35,9 +35,9 @@ export class AnimeDogController {
     return this.animeDogService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAnimeDogDto: UpdateAnimeDogDto) {
-    return this.animeDogService.update(+id, updateAnimeDogDto);
+  @Patch('pay')
+  update( @Body() updateAnimeDogDto: UpdateAnimeDogDto) {
+    return this.animeDogService.update( updateAnimeDogDto);
   }
 
   @Delete(':id')
