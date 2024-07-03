@@ -18,6 +18,11 @@ export class Bet {
 
   @Prop({ type: Number, required: true })
   possibleWin: number;
+
+  @Prop({ type: Boolean, default: false })
+  win: boolean;
+  @Prop({ type: Number })
+  prize: number;
 }
 
 const BetSchema = SchemaFactory.createForClass(Bet);
@@ -32,14 +37,17 @@ export class Keno {
   @Prop({ type: Number, required: true })
   gameId: number;
 
-  @Prop({ type: Boolean, default: false })
-  win: boolean;
+  @Prop({ type: Number, required: true })
+  TotalPossibleWin: number; 
+
 
   @Prop({ type: Boolean, default: false })
   canceled: boolean;
 
   @Prop({ type: Boolean, default: false })
   payd: boolean;
+  @Prop({type: String, required:true})
+  tiketId:String
 }
 
 export const KenoSchema = SchemaFactory.createForClass(Keno);

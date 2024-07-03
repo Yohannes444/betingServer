@@ -4,7 +4,6 @@ import { UpdateKenoDto } from './dto/update-keno.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { KenoDocument } from './entities/keno.entity'
-
 @Injectable()
 export class KenoService {
 
@@ -15,13 +14,35 @@ export class KenoService {
   ){}
 
   async create(createKenoDto: CreateKenoDto) {
-    try{
-      const newKenoTiket= await this.kenoModel.create(createKenoDto)
-      console.log("createKenoDto:=>",createKenoDto,"\nnewKenoTiket: ",newKenoTiket)
+    try {
+      const { bets, gameId, tiketId } = createKenoDto;
+
+      const totalPossibleWin = bets.reduce((sum, bet) => sum + bet.possibleWin, 0);
+
+
+      const newKeno = {
+        bets: bets.map(bet => ({
+          selectedButtonsS:bet.selectedButtonsS,
+          betAmount:bet.betAmount,
+          odd:bet.odd,
+          possibleWin:bet.possibleWin,
+          win: false, // default value
+          prize: 0    // default value
+        })),
+        gameId: Number(gameId),
+        TotalPossibleWin: totalPossibleWin,
+        canceled: false, // default value
+        payd: false,     // default value
+        tiketId: tiketId
+      };
+
+      const newKenoTiket = await this.kenoModel.create(newKeno);
+      console.log("createKenoDto:=>", createKenoDto, "\n newKenoTiket: ", newKenoTiket);
       
       return newKenoTiket;
-    }catch (error){
-      console.log("error activating customer")
+    } catch (error) {
+      console.error("Error creating Keno ticket:", error);
+      throw error;
     }
   }
 

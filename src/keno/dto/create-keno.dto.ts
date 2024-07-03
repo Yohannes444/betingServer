@@ -1,18 +1,30 @@
-import { IsArray, IsNumber, ArrayMinSize, IsPositive, IsString } from 'class-validator';
+import { IsArray, IsNumber, ArrayMinSize, IsPositive, IsString,ValidateNested } from 'class-validator';
+import { Type } from 'class-transformer';
 
-export class CreateKenoDto {
+class Bet {
   @IsArray()
   @ArrayMinSize(1)
-  @IsNumber({}, { each: true })
+  @Type(() => Number)
   selectedButtonsS: number[];
 
   @IsNumber()
-  @IsPositive()
   betAmount: number;
 
   @IsNumber()
   @IsPositive()
   odd: number;
+  
+  @IsNumber()
+  @IsPositive()
+  possibleWin: number;
+}
+export class CreateKenoDto {
+ 
+  @IsArray()
+  @ValidateNested({ each: true })
+  @Type(() => Bet)
+  @ArrayMinSize(1)
+  bets: Bet[];
 
   @IsString()
   @IsPositive()
@@ -22,7 +34,5 @@ export class CreateKenoDto {
   @IsPositive()
   tiketId: string;
 
-  @IsNumber()
-  @IsPositive()
-  possibleWin: number;
+
 }

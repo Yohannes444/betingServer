@@ -9,5 +9,8 @@ import { Keno, KenoSchema } from './entities/keno.entity'
   ],
   controllers: [KenoController],
   providers: [KenoService],
+  exports: [KenoService, MongooseModule]
+
 })
 export class KenoModule {}
+

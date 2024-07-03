@@ -3,6 +3,7 @@ import { KenoRsultService } from './keno-rsult.service';
 import { CreateKenoRsultDto } from './dto/create-keno-rsult.dto';
 import { UpdateKenoRsultDto } from './dto/update-keno-rsult.dto';
 
+
 @Controller('keno-rsult')
 export class KenoRsultController {
   constructor(private readonly kenoRsultService: KenoRsultService) {}
