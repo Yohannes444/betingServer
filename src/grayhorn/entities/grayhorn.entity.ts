@@ -46,6 +46,9 @@ export class Grayhorn {
 
   @Prop({ type: Boolean, default: false })
   payd: boolean;
+  
+  @Prop({type: String, required:true})
+  tiketId:String
 }
 
 export const GrayhornSchema = SchemaFactory.createForClass(Grayhorn);

@@ -1,4 +1,4 @@
-import { IsArray, IsBoolean, IsNumber, ArrayMinSize } from 'class-validator';
+import { IsArray, IsBoolean, IsNumber, ArrayMinSize,IsString } from 'class-validator';
 import { Type } from 'class-transformer';
 
 export class CreateGrayhornDto {
@@ -15,4 +15,7 @@ export class CreateGrayhornDto {
 
   @IsBoolean()
   isQuinellaActive: boolean;
+  
+  @IsString()
+  tiketId: string;
 }

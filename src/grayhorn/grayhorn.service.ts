@@ -15,7 +15,6 @@ export class GrayhornService {
   async create(createGrayhornDto: CreateGrayhornDto) {
     try{
       const newGrayhornTiket= await this.grayhornModel.create(createGrayhornDto)
-      console.log("createGrayhornDto: ",createGrayhornDto , "\n newGrayhornTiket: ",newGrayhornTiket)
       return newGrayhornTiket;
     }catch (error){
       console.log("error activating customer")
@@ -32,8 +31,22 @@ export class GrayhornService {
     return oneTikets;
   }
 
-  update(id: string, updateGrayhornDto: UpdateGrayhornDto) {
-    return `This action updates a #${id} grayhorn`;
+  async update(updateGrayhornDto: UpdateGrayhornDto) {
+    try{
+        const tiket= await this.grayhornModel.findOne({tiketId:updateGrayhornDto.tiketId})
+        if (tiket.payd === true){
+          return " ticket is already paid"
+        }else if (tiket.totslPrize > 0){
+          tiket.payd = true
+          tiket.save()
+          return tiket
+    }
+
+    return `this tiket have no wining bet in hear`;
+    }catch (error){
+      console.log("error finding tiket")
+    }
+
   }
 
   remove(id: string) {

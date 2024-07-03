@@ -17,11 +17,10 @@ export class GrayhornController {
     return this.grayhornService.findAll();
   }
 
-  
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateGrayhornDto: UpdateGrayhornDto) {
-    return this.grayhornService.update(id, updateGrayhornDto);
+  @Patch('pay')
+  update(@Body() updateGrayhornDto: UpdateGrayhornDto) {
+    return this.grayhornService.update(updateGrayhornDto);
   }
 
   @Delete(':id')
