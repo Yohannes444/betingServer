@@ -1,11 +1,11 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose,{ Document } from 'mongoose';
 import { Type } from 'class-transformer';
 import { ArrayMinSize } from 'class-validator';
 
 export type GrayhornDocument = Grayhorn & Document;
 
-@Schema({ _id: false })  // Using _id: false to avoid nested _id for subdocuments
+@Schema({ _id: false })  // Using _id: false to avoid nested _id for 
 export class Bet {
   @Prop({ type: [[Number]], required: true })
   @ArrayMinSize(1)  // Validate that the array has at least one element
@@ -43,6 +43,9 @@ export class Grayhorn {
 
   @Prop({ type: Boolean, default: false })
   canceled: boolean;
+
+  @Prop({type: mongoose.Schema.Types.ObjectId, required:false})
+  tiketerId:mongoose.Schema.Types.ObjectId
 
   @Prop({ type: Boolean, default: false })
   payd: boolean;

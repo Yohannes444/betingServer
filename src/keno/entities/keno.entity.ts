@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose,{ Document } from 'mongoose';
 import { Type } from 'class-transformer';
 import { ArrayMinSize } from 'class-validator';
 export type KenoDocument = Keno & Document;
@@ -46,8 +46,11 @@ export class Keno {
 
   @Prop({ type: Boolean, default: false })
   payd: boolean;
-  @Prop({type: String, required:true})
-  tiketId:String
+
+  @Prop({type: mongoose.Schema.Types.ObjectId, required:false})
+  tiketerId:mongoose.Schema.Types.ObjectId
+
+  
 }
 
 export const KenoSchema = SchemaFactory.createForClass(Keno);

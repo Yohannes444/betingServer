@@ -26,7 +26,6 @@ export class AnimeDogService {
         canceled: false, 
         payd: false, 
         totslPrize: 0, 
-        tiketerId: null, 
         bets: createAnimeDogDto.bets.map(bet => ({
           ...bet,
           win: false, 

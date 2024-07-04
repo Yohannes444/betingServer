@@ -1,6 +1,6 @@
 import { IsArray, IsBoolean, IsNumber, ArrayMinSize,IsString } from 'class-validator';
 import { Type } from 'class-transformer';
-
+import mongoose,{ Document } from 'mongoose';
 export class CreateGrayhornDto {
   @IsArray()
   @ArrayMinSize(1)
@@ -18,4 +18,9 @@ export class CreateGrayhornDto {
   
   @IsString()
   tiketId: string;
+
+  @IsString()
+  tiketerId:mongoose.Schema.Types.ObjectId
+  
+
 }

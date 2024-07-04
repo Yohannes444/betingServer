@@ -17,19 +17,15 @@ export class AnimeHorsService {
   async create(createAnimeHorDto: CreateAnimeHorDto) {
 
     try {
-      // Convert plain object to class instance for validation
       const createAnimeHorObj = plainToInstance(CreateAnimeHorDto, createAnimeHorDto);
 
-      // Validate the DTO instance
       await validateOrReject(createAnimeHorObj);
 
-      // Set default values or computed values for attributes not in the DTO
       const newAnimeHorData: Partial<AnimeHor> = {
         ...createAnimeHorDto,
         canceled: false, 
         payd: false, 
         totslPrize: 0,
-        tiketerId: null, 
         bets: createAnimeHorDto.bets.map(bet => ({
           ...bet,
           win: false, 
@@ -41,7 +37,7 @@ export class AnimeHorsService {
       return newAnimeHorTiket;
     } catch (error) {
       console.error("Error creating AnimeHor ticket:", error);
-      throw error; // Re-throw the error after logging it
+      throw error; 
     }
   }
 

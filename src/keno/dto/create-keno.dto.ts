@@ -1,5 +1,6 @@
 import { IsArray, IsNumber, ArrayMinSize, IsPositive, IsString,ValidateNested } from 'class-validator';
 import { Type } from 'class-transformer';
+import mongoose,{ Document } from 'mongoose';
 
 class Bet {
   @IsArray()
@@ -34,5 +35,7 @@ export class CreateKenoDto {
   @IsPositive()
   tiketId: string;
 
-
+  @IsString()
+  tiketerId:mongoose.Schema.Types.ObjectId
+  
 }
