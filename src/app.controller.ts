@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch,Query , Param, Delete } from '@nestjs/common';
 import { AppService } from './app.service';
 import { IpService } from './ip.service';
 
@@ -12,6 +12,14 @@ export class AppController {
   @Get()
   getHello(): string {
     return this.appService.getHello();
+  }
+
+  @Get('stat')
+  async getStat(
+    @Query('tiketerId') tiketerId: string,
+  ) {
+
+    return this.appService.getStat( tiketerId);
   }
 
   @Get('api/getLocalIP')

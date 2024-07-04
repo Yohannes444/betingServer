@@ -23,30 +23,33 @@ export class AppService {
 
   ){}
 
-  async getStat(id: string){
-    const stat= {
-      animehors:{
-        total:null,
-        payd:null,
-        profit:null
-      },
-      animeDog:{
-        total:null,
-        payd:null,
-        profit:null
-      },
-      tryfecta:{
-        total:null,
-        payd:null,
-        profit:null
-      },
-      keno:{
-        total:null,
-        payd:null,
-        profit:null
-      }
-    }
-    
+  private async calculateStats(model: Model<any>, tiketerId: string): Promise<{ total: number, paid: number, profit: number }> {
+    const documents = await model.find({ tiketerId }).exec();
+    let total = 0;
+    let paid = 0;
+    let profit = 0;
+
+    documents.forEach(doc => {
+      doc.bets.forEach(bet => {
+        total += bet.betAmount;
+        if (bet.win) {
+          paid += bet.prize;
+        }
+      });
+      profit = total - paid;
+    });
+
+    return { total, paid: paid, profit };
+  }
+
+  async getStat(tiketerId: string) {
+    const stat = {
+      animehors: await this.calculateStats(this.animeHorModel, tiketerId),
+      animeDog: await this.calculateStats(this.animeDogModel, tiketerId),
+      tryfecta: await this.calculateStats(this.grayhornModel, tiketerId),
+      keno: await this.calculateStats(this.kenoModel, tiketerId)
+    };
+    return stat;
   }
 
   getHello(): any {
