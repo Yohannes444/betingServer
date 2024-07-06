@@ -33,14 +33,14 @@ export class AnimeHorsController {
   findBayTiketId(@Param('id') id: string) {
     return this.animeHorsService.findBayTiketId(id);
   }
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.animeHorsService.findOne(id);
   }
 
   @Patch('pay')
-  update( @Body() updateAnimeHorDto: UpdateAnimeHorDto) {
+  update( @Query() updateAnimeHorDto: UpdateAnimeHorDto) {
     return this.animeHorsService.update(updateAnimeHorDto);
   }
 

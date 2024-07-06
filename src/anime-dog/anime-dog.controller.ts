@@ -33,14 +33,14 @@ export class AnimeDogController {
   findBayTiketId(@Param('id') id: string) {
     return this.animeDogService.findBayTiketId(id);
   }
-  
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.animeDogService.findOne(id);
   }
 
   @Patch('pay')
-  update( @Body() updateAnimeDogDto: UpdateAnimeDogDto) {
+  update( @Query() updateAnimeDogDto: UpdateAnimeDogDto) {
     return this.animeDogService.update( updateAnimeDogDto);
   }
 

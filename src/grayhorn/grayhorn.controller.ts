@@ -19,7 +19,7 @@ export class GrayhornController {
 
 
   @Patch('pay')
-  update(@Body() updateGrayhornDto: UpdateGrayhornDto) {
+  update(@Query() updateGrayhornDto: UpdateGrayhornDto) {
     return this.grayhornService.update(updateGrayhornDto);
   }
 
