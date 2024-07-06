@@ -21,6 +21,12 @@ export class GrayhornService {
     }
   }
 
+  async findBayTiketId(id: string) {
+    const tiket= await this.grayhornModel.findOne({tiketId:id})
+
+    return tiket;
+  }
+
   async findAll() {
     const allTikets= await this.grayhornModel.find()
     return allTikets;

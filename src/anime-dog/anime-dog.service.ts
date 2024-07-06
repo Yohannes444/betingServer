@@ -50,6 +50,12 @@ export class AnimeDogService {
     return tiket;
   }
 
+  async findBayTiketId(id: string) {
+    const tiket= await this.animeDogModel.findOne({tiketId:id})
+
+    return tiket;
+  }
+
   async update(updateAnimeDogDto: UpdateAnimeDogDto) {
     try{
       const tiket= await this.animeDogModel.findOne({tiketId:updateAnimeDogDto.tiketId})

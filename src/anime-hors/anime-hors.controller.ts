@@ -29,6 +29,11 @@ export class AnimeHorsController {
     return this.animeHorsService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
   }
 
+  @Get('tiketId/:id')
+  findBayTiketId(@Param('id') id: string) {
+    return this.animeHorsService.findBayTiketId(id);
+  }
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.animeHorsService.findOne(id);

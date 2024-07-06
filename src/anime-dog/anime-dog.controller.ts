@@ -29,7 +29,11 @@ export class AnimeDogController {
 
     return this.animeDogService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
   }
-
+  @Get('tiketId/:id')
+  findBayTiketId(@Param('id') id: string) {
+    return this.animeDogService.findBayTiketId(id);
+  }
+  
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.animeDogService.findOne(id);

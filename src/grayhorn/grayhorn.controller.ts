@@ -40,7 +40,10 @@ export class GrayhornController {
     
     return this.grayhornService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
   }
-
+  @Get('tiketId/:id')
+  findBayTiketId(@Param('id') id: string) {
+    return this.grayhornService.findBayTiketId(id);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.grayhornService.findOne(id);

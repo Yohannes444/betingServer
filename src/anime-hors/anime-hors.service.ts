@@ -51,6 +51,11 @@ export class AnimeHorsService {
     return tiket;
   }
 
+  async findBayTiketId(id: string) {
+    const tiket= await this.AnimeHorModel.findOne({tiketId:id})
+
+    return tiket;
+  }
   async update( updateAnimeHorDto: UpdateAnimeHorDto) {
     try{
       const tiket= await this.AnimeHorModel.findOne({tiketId:updateAnimeHorDto.tiketId})
