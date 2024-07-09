@@ -32,14 +32,17 @@ export class GrayhornController {
   async findByCriteria(
     @Query('startDate') startDate: Date,
     @Query('endDate') endDate: Date,
-    @Body('payd') payd: boolean,
-    @Body('canceled') canceled: boolean,
+    @Query('payd') payd: boolean,
+    @Query('canceled') canceled: boolean,
     @Body('gameId') gameId: number,
     @Body('minTotalPrize') minTotalPrize: number,
   ) {
-    
+
+    console.log("canceled Body: ",canceled)
+
     return this.grayhornService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
   }
+  
   @Get('tiketId/:id')
   findBayTiketId(@Param('id') id: string) {
     return this.grayhornService.findBayTiketId(id);

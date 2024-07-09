@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Query } from '@nestjs/common';
 import { KenoService } from './keno.service';
 import { CreateKenoDto } from './dto/create-keno.dto';
 import { UpdateKenoDto } from './dto/update-keno.dto';
@@ -16,7 +16,20 @@ export class KenoController {
   findAll() {
     return this.kenoService.findAll();
   }
+  @Get('filter')
+  async findByCriteria(
+    @Query('startDate') startDate: Date,
+    @Query('endDate') endDate: Date,
+    @Query('payd') payd: boolean,
+    @Query('canceled') canceled: boolean,
+    @Query('gameId') gameId: number,
+    @Body('minTotalPrize') minTotalPrize: number,
+  ) {
 
+    console.log("canceled Body: ",canceled)
+
+    return this.kenoService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.kenoService.findOne(+id);
