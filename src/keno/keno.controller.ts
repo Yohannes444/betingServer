@@ -20,9 +20,9 @@ export class KenoController {
   async findByCriteria(
     @Query('startDate') startDate: Date,
     @Query('endDate') endDate: Date,
-    @Query('payd') payd: boolean,
-    @Query('canceled') canceled: boolean,
-    @Query('gameId') gameId: number,
+    @Query('payd') payd: string,
+    @Query('canceled') canceled: string,
+    @Query('gameId') gameId: string,
     @Body('minTotalPrize') minTotalPrize: number,
   ) {
 

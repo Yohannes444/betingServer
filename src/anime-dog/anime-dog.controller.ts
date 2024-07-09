@@ -20,9 +20,9 @@ export class AnimeDogController {
   async findByCriteria(
     @Query('startDate') startDate: Date,
     @Query('endDate') endDate: Date,
-    @Body('payd') payd: boolean,
-    @Body('canceled') canceled: boolean,
-    @Body('gameId') gameId: number,
+    @Query('payd') payd: string,
+    @Query('canceled') canceled: string,
+    @Query('gameId') gameId: string,
     @Body('minTotalPrize') minTotalPrize: number,
   ) {
     console.log("{param: ", payd)

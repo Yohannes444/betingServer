@@ -65,9 +65,9 @@ export class KenoService {
   async findByCriteria(
     startDate: Date,
     endDate: Date,
-    payd: boolean,
-    canceled: boolean,
-    gameId: number,
+    payd: string,
+    canceled: string,
+    gameId: string,
     minTotalPrize: number,
   ) {
     const query: any = {};
@@ -80,14 +80,13 @@ export class KenoService {
       query['createdAt'] = { $lte: endDate };
     }
 
-    if (payd !== undefined && payd == true) {
+    if (payd !== undefined && payd === "true") {
       query['payd'] = payd;
     }
 
-    if (canceled !== undefined) {
+    if (canceled !== undefined && canceled === "true") {
       query['canceled'] = canceled;
     }
-
     if (gameId) {
       query['gameId'] = gameId;
     }
