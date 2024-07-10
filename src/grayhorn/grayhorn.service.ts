@@ -91,8 +91,10 @@ export class GrayhornService {
 
     if (minTotalPrize !== undefined && minTotalPrize > 0) {
       query['totalPrize'] = { $gt: minTotalPrize };
+
     }
 
-    return await this.grayhornModel.find(query).exec();
+    
+    return await this.grayhornModel.find(query).populate('tiketerId').exec();
   }
 }

@@ -1,4 +1,11 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateAnimeHorDto } from './create-anime-hor.dto';
 
-export class UpdateAnimeHorDto extends PartialType(CreateAnimeHorDto) {}
+import { IsNotEmpty, IsString } from 'class-validator';
+
+
+
+export class UpdateAnimeHorDto {
+  @IsNotEmpty()
+//   @IsString()
+  tiketId: string;
+
+}

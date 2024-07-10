@@ -38,13 +38,14 @@ export class Grayhorn {
   @Prop({ type: Number, required: true })
   gameId: number;
 
-  @Prop({ type: Number })
+  @Prop({ type: Number,default:0 })
   totslPrize: number;
+
 
   @Prop({ type: Boolean, default: false })
   canceled: boolean;
 
-  @Prop({type: mongoose.Schema.Types.ObjectId, required:false})
+  @Prop({ref: 'User',type: mongoose.Schema.Types.ObjectId, required:false})
   tiketerId:mongoose.Schema.Types.ObjectId
 
   @Prop({ type: Boolean, default: false })

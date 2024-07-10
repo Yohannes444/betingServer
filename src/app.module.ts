@@ -13,8 +13,8 @@ import { AuthModule } from './auth/auth.module';
 import { ResaltModule } from './resalt/resalt.module';
 import { GrayhornResulatModule } from './grayhorn-resulat/grayhorn-resulat.module';
 import { IpService } from './ip.service'; // Add this import
-
 import { KenoRsultModule } from './keno-rsult/keno-rsult.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({

@@ -114,6 +114,6 @@ export class AnimeDogService {
       query['totalPrize'] = { $gt: minTotalPrize };
     }
 
-    return await this.animeDogModel.find(query).exec();
+    return await this.animeDogModel.find(query).populate('tiketerId').exec();
   }
 }

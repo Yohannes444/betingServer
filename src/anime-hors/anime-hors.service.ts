@@ -112,6 +112,6 @@ export class AnimeHorsService {
       query['totalPrize'] = { $gt: minTotalPrize };
     }
 
-    return await this.AnimeHorModel.find(query).exec();
+    return await this.AnimeHorModel.find(query).populate('tiketerId').exec();
   }
 }

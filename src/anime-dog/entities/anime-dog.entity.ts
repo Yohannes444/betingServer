@@ -38,10 +38,12 @@ export class AnimeDog {
   @Prop({ type: Boolean, default: false })
   payd: boolean;
 
-  @Prop({ type: Number })
+
+  @Prop({ type: Number,default:0 })
   totslPrize: number;
 
-  @Prop({type: mongoose.Schema.Types.ObjectId, required:false})
+
+  @Prop({ref: 'User',type: mongoose.Schema.Types.ObjectId, required:false})
   tiketerId:mongoose.Schema.Types.ObjectId
 
   @Prop({type: String, required:true})
