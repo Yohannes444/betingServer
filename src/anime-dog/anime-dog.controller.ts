@@ -25,7 +25,6 @@ export class AnimeDogController {
     @Query('gameId') gameId: string,
     @Body('minTotalPrize') minTotalPrize: number,
   ) {
-    console.log("{param: ", payd)
 
     return this.animeDogService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
   }

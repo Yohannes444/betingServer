@@ -38,8 +38,6 @@ export class GrayhornController {
     @Body('minTotalPrize') minTotalPrize: number,
   ) {
 
-    console.log("canceled Body: ",canceled)
-
     return this.grayhornService.findByCriteria(startDate, endDate, payd, canceled, gameId, minTotalPrize);
   }
 

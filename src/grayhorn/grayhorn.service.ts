@@ -58,7 +58,6 @@ export class GrayhornService {
   remove(id: string) {
     return `This action removes a #${id} grayhorn`;
   }
-git s
   async findByCriteria(
     startDate: Date,
     endDate: Date,
