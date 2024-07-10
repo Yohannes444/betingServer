@@ -28,7 +28,7 @@ export class GrayhornService {
   }
 
   async findAll() {
-    const allTikets= await this.grayhornModel.find()
+    const allTikets= await this.grayhornModel.find().populate('tiketerId')
     return allTikets;
   }
 
@@ -58,7 +58,7 @@ export class GrayhornService {
   remove(id: string) {
     return `This action removes a #${id} grayhorn`;
   }
-
+git s
   async findByCriteria(
     startDate: Date,
     endDate: Date,

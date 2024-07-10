@@ -42,7 +42,7 @@ export class AnimeHorsService {
   }
 
   async findAll() {
-    const allTikets= await this.AnimeHorModel.find()
+    const allTikets= await this.AnimeHorModel.find().populate('tiketerId')
     return allTikets;
   }
 

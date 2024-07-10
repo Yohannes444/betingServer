@@ -40,7 +40,7 @@ export class AnimeDogService {
   }
 
   async findAll() {
-    const allTikets= await this.animeDogModel.find()
+    const allTikets= await this.animeDogModel.find().populate('tiketerId')
     return allTikets;
   }
 
