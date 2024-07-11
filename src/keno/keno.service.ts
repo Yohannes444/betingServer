@@ -15,7 +15,7 @@ export class KenoService {
 
   async create(createKenoDto: CreateKenoDto) {
     try {
-      const { bets, gameId, tiketId } = createKenoDto;
+      const { bets, gameId, tiketId,tiketerId } = createKenoDto;
 
       const totalPossibleWin = bets.reduce((sum, bet) => sum + bet.possibleWin, 0);
 
@@ -33,7 +33,8 @@ export class KenoService {
         TotalPossibleWin: totalPossibleWin,
         canceled: false, // default value
         payd: false,     // default value
-        tiketId: tiketId
+        tiketId: tiketId,
+        tiketerId: tiketerId
       };
 
       const newKenoTiket = await this.kenoModel.create(newKeno);
@@ -46,8 +47,9 @@ export class KenoService {
     }
   }
 
-  findAll() {
-    return `This action returns all keno`;
+  async findAll() {
+    const tikets= await this.kenoModel.find()
+    return tikets;
   }
 
   findOne(id: number) {

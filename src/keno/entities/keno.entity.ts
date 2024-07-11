@@ -47,9 +47,11 @@ export class Keno {
   @Prop({ type: Boolean, default: false })
   payd: boolean;
 
-  @Prop({type: mongoose.Schema.Types.ObjectId, required:false})
+  @Prop({ref: 'User',type: mongoose.Schema.Types.ObjectId, required:false})
   tiketerId:mongoose.Schema.Types.ObjectId
 
+  @Prop({type: String, required:true})
+  tiketId:String
   
 }
 
