@@ -1,5 +1,5 @@
 export enum Type{
-    Hors= "Hors",
+    Hors= "Horse",
     Dog= "Dog"
   }
   
