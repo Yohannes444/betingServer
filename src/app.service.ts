@@ -23,12 +23,28 @@ export class AppService {
 
   ){}
 
-  private async calculateStats(model: Model<any>, tiketerId: string): Promise<{ total: number, paid: number, profit: number }> {
-    const documents = await model.find({ tiketerId }).exec();
+ 
+ async calculateStats(model: Model<any>, tiketerId: string, currentDate: Date): Promise<{ total: number, paid: number, profit: number }> {
+
+    const year = currentDate.getUTCFullYear();
+  const month = currentDate.getUTCMonth();
+  const day = currentDate.getUTCDate();
+  
+  // Start and end of the day in UTC
+  const startOfDay = `0${month+1}-${day}-${year}`;
+    // Format currentDate as "YYYY-MM-DD"
+    const query: any = {};
+  
+    query['createdAt'] = {$gte: startOfDay };
+    query['tiketerId'] = {tiketerId}.tiketerId;
+
+    // Find documents for the given date
+    const documents = await model.find(
+      query
+    ).exec();
     let total = 0;
     let paid = 0;
-    let profit = 0;
-
+  
     documents.forEach(doc => {
       doc.bets.forEach(bet => {
         total += bet.betAmount;
@@ -36,19 +52,23 @@ export class AppService {
           paid += bet.prize;
         }
       });
-      profit = total - paid;
     });
-
-    return { total, paid: paid, profit };
+  
+    const profit = total - paid;
+  
+    return { total, paid, profit };
   }
-
+  
   async getStat(tiketerId: string) {
+    const currentDate = new Date();
+  
     const stat = {
-      animehors: await this.calculateStats(this.animeHorModel, tiketerId),
-      animeDog: await this.calculateStats(this.animeDogModel, tiketerId),
-      tryfecta: await this.calculateStats(this.grayhornModel, tiketerId),
-      keno: await this.calculateStats(this.kenoModel, tiketerId)
+      animehors: await this.calculateStats(this.animeHorModel, tiketerId, currentDate),
+      animeDog: await this.calculateStats(this.animeDogModel, tiketerId, currentDate),
+      tryfecta: await this.calculateStats(this.grayhornModel, tiketerId, currentDate),
+      keno: await this.calculateStats(this.kenoModel, tiketerId, currentDate)
     };
+  
     return stat;
   }
 
