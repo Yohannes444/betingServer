@@ -3,7 +3,7 @@ import { AnimeDogService } from './anime-dog.service';
 import { CreateAnimeDogDto } from './dto/create-anime-dog.dto';
 import { UpdateAnimeDogDto } from './dto/update-anime-dog.dto';
 
-@Controller('anime-dog')
+@Controller('animeDog')
 export class AnimeDogController {
   constructor(private readonly animeDogService: AnimeDogService) {}
 

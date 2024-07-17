@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose,{ Document } from 'mongoose';
 
 export type GameResultDocument = GrayhornResulat & Document;
 
@@ -22,10 +22,10 @@ export class GrayhornResulat {
   @Prop({ type: Number, required: true })
   gameId: number;
 
-  @Prop({ type: String, required: true })
-  tiketerId: string;
+  @Prop({ref: 'User',type: mongoose.Schema.Types.ObjectId, required:false})
+  tiketerId:mongoose.Schema.Types.ObjectId
 
-  @Prop({ type: GameResultSchema, required: true })
+  @Prop({  required: true })
   resalt: GameResult;
 
   @Prop({ type: Number, required: true })

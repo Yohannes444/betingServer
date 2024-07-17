@@ -119,8 +119,9 @@ export class GrayhornResulatService {
    
   }
 
-  findAll() {
-    return `This action returns all grayhornResulat`;
+  async findAll() {
+    const allGrayhornResult= await this.grayhornResulatModel.find().populate('tiketerId')
+    return allGrayhornResult;
   }
 
   findOne(id: number) {
@@ -133,5 +134,29 @@ export class GrayhornResulatService {
 
   remove(id: number) {
     return `This action removes a #${id} grayhornResulat`;
+  }
+  async findByCriteria(
+    startDate: Date,
+    endDate: Date,
+    gameId: string,
+
+  ) {
+    const query: any = {};
+
+    if (startDate && endDate) {
+      query['createdAt'] = { $gte: startDate, $lte: endDate };
+    } else if (startDate) {
+      query['createdAt'] = { $gte: startDate };
+    } else if (endDate) {
+      query['createdAt'] = { $lte: endDate };
+    }
+    if (gameId) {
+      query['gameId'] = gameId;
+    }
+
+   
+
+    
+    return await this.grayhornResulatModel.find(query).populate('tiketerId').exec();
   }
 }

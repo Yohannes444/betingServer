@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,Query } from '@nestjs/common';
 import { GrayhornResulatService } from './grayhorn-resulat.service';
 import { CreateGrayhornResulatDto } from './dto/create-grayhorn-resulat.dto';
 import { UpdateGrayhornResulatDto } from './dto/update-grayhorn-resulat.dto';
@@ -17,6 +17,16 @@ export class GrayhornResulatController {
     return this.grayhornResulatService.findAll();
   }
 
+  @Get('filter')
+  async findByCriteria(
+    @Query('startDate') startDate: Date,
+    @Query('endDate') endDate: Date,
+    @Query('gameId') gameId: string,
+
+  ) {
+
+    return this.grayhornResulatService.findByCriteria(startDate, endDate,gameId);
+  }
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.grayhornResulatService.findOne(+id);
