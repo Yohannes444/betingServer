@@ -135,6 +135,7 @@ export class GrayhornResulatService {
   remove(id: number) {
     return `This action removes a #${id} grayhornResulat`;
   }
+  
   async findByCriteria(
     startDate: Date,
     endDate: Date,
@@ -153,9 +154,6 @@ export class GrayhornResulatService {
     if (gameId) {
       query['gameId'] = gameId;
     }
-
-   
-
     
     return await this.grayhornResulatModel.find(query).populate('tiketerId').exec();
   }

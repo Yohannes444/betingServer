@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import mongoose,{ Document } from 'mongoose';
+
 import { Type } from './type.enum'
 export type DogRaceDocument = Resalt & Document;
 
@@ -18,14 +19,16 @@ export class Resalt {
   @Prop({ type: Number, required: true })
   gameId: number;
 
-  @Prop({ type: DogRacingSchema, required: true })
+  @Prop({required: true })
   First: DogRacing;
 
-  @Prop({ type: DogRacingSchema, required: true })
+  @Prop({required: true })
   Second: DogRacing;
 
   @Prop({ enum:Type, required: true })
   type: Type;
+  @Prop({ref: 'User',type: mongoose.Schema.Types.ObjectId, required:false})
+  tiketerId:mongoose.Schema.Types.ObjectId
 }
 
 export const DogRaceSchema = SchemaFactory.createForClass(Resalt);

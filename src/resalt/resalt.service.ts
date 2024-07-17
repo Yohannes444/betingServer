@@ -122,9 +122,36 @@ export class ResaltService {
     }
   }
 
+  async findByCriteria(
+    Type: Type,
+    startDate: Date,
+    endDate: Date,
+    gameId: string
+
+  ) {
+  console.log(Type);
+
+    const query: any = {};
+    if (startDate && endDate) {
+      query['createdAt'] = { $gte: startDate, $lte: endDate };
+    } else if (startDate) {
+      query['createdAt'] = { $gte: startDate };
+    } else if (endDate) {
+      query['createdAt'] = { $lte: endDate };
+    }
+    if (gameId) {
+      query['gameId'] = gameId;
+    }  if (Type) {
+      query['type'] = Type;
+    }
+console.log(query);
+    
+    return await this.dogRaceModel.find(query).populate('tiketerId').exec();
+  } 
   
-  findAll() {
-    return `This action returns all resalt`;
+  async findAll() {
+    const allGrayhornResult= await this.dogRaceModel.find().populate('tiketerId')
+    return allGrayhornResult;
   }
 
   findOne(id: number) {
