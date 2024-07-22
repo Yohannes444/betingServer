@@ -15,7 +15,7 @@ import { GrayhornResulatModule } from './grayhorn-resulat/grayhorn-resulat.modul
 import { IpService } from './ip.service'; // Add this import
 import { KenoRsultModule } from './keno-rsult/keno-rsult.module';
 import { AnimeResultCheckupModule } from './anime-result-checkup/anime-result-checkup.module';
-
+import { TryfectaResultCheckupModule } from "./tryfectaresult-checkup/anime-result-checkup.module"
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -39,7 +39,8 @@ import { AnimeResultCheckupModule } from './anime-result-checkup/anime-result-ch
     ResaltModule,
     GrayhornResulatModule,
     KenoRsultModule,
-    AnimeResultCheckupModule
+    AnimeResultCheckupModule,
+    TryfectaResultCheckupModule
   ],
   controllers: [AppController],
   providers: [AppService, IpService], // Add IpService to providers
