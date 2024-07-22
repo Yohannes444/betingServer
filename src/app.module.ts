@@ -14,6 +14,7 @@ import { ResaltModule } from './resalt/resalt.module';
 import { GrayhornResulatModule } from './grayhorn-resulat/grayhorn-resulat.module';
 import { IpService } from './ip.service'; // Add this import
 import { KenoRsultModule } from './keno-rsult/keno-rsult.module';
+import { AnimeResultCheckupModule } from './anime-result-checkup/anime-result-checkup.module';
 
 @Module({
   imports: [
@@ -37,7 +38,8 @@ import { KenoRsultModule } from './keno-rsult/keno-rsult.module';
     AuthModule,
     ResaltModule,
     GrayhornResulatModule,
-    KenoRsultModule
+    KenoRsultModule,
+    AnimeResultCheckupModule
   ],
   controllers: [AppController],
   providers: [AppService, IpService], // Add IpService to providers
