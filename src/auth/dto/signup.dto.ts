@@ -21,7 +21,5 @@ export class SignupDto {
   @IsOptional()
   @IsEnum(Role)
   role: Role;
-  @IsOptional()
-  @IsBoolean()
-  active:Boolean
+
 }

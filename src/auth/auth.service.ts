@@ -27,6 +27,10 @@ export class AuthService {
     return token;
   }
 
+  async createUser(signupDto: SignupDto): Promise<User> {
+    const createdUser =  this.userService.createUser(signupDto);
+    return createdUser;
+  }
   async login(loginDto: LoginDto) {
     try {
       const user = await this.userService.validateUser(loginDto);

@@ -19,6 +19,7 @@ export class UserService {
     @InjectModel('User') private readonly userModel: Model<UserDocument>,
   ) {}
 
+  
   private async sendWelcomeEmail(
     username: string,
     email: string,
@@ -53,7 +54,10 @@ export class UserService {
     }
   }
 
-
+  async createUser(signupDto: SignupDto): Promise<User> {
+    const createdUser = new this.userModel(signupDto);
+    return createdUser.save();
+  }
   async getAllCustomers() {
     try {
       const users = await this.userModel.find({ role: 'customer' });
